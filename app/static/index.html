@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TraceLens</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="eyebrow">TraceLens</p>
+        <h1>Evidence-backed incident retrieval</h1>
+      </div>
+      <nav>
+        <button class="tab active" data-tab="investigate">Investigate</button>
+        <button class="tab" data-tab="evaluate">Recall@k</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="investigate" class="panel active">
+        <p class="lede">
+          Ask a production question. TraceLens retrieves the top chunks and
+          shows which source they came from.
+        </p>
+        <form id="ask-form">
+          <label for="question">Incident question</label>
+          <textarea id="question" rows="3" required>
+Why did checkout return 500 after the 1.4.2 deploy?</textarea>
+          <div class="row">
+            <label>k
+              <input id="limit" type="number" min="1" max="10" value="5" />
+            </label>
+            <button type="submit">Retrieve</button>
+          </div>
+        </form>
+        <div id="retrieve-results"></div>
+      </section>
+
+      <section id="evaluate" class="panel">
+        <p class="lede">
+          Recall@k is the share of labeled-relevant documents that appear in the
+          top k retrieved results. Gold labels live in
+          <code>data/eval/questions.json</code>.
+        </p>
+        <form id="eval-form">
+          <div class="row">
+            <label>k
+              <input id="eval-k" type="number" min="1" max="10" value="5" />
+            </label>
+            <button type="submit">Run evaluation</button>
+          </div>
+        </form>
+        <div id="eval-results"></div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

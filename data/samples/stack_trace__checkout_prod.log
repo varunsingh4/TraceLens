@@ -1,0 +1,15 @@
+Timestamp: 2026-10-20T14:02:11Z
+Service: checkout-service
+Release: checkout-service@1.4.2
+Trace ID: 8f3a1c2e7b90
+HTTP: POST /api/checkout -> 500 Internal Server Error
+
+java.lang.IllegalStateException: PaymentAuthorizationClient timed out after 2500ms
+    at com.shop.checkout.PaymentGateway.authorize(PaymentGateway.java:88)
+    at com.shop.checkout.CheckoutService.placeOrder(CheckoutService.java:41)
+    at com.shop.checkout.CheckoutController.create(CheckoutController.java:22)
+
+Caused by: java.net.SocketTimeoutException: Read timed out connecting to payments-service:8080/authorize
+    at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+
+Error budget: 12% of checkout requests failed in a 6 minute window after the 13:58 deploy.

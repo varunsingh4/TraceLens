@@ -1,0 +1,11 @@
+Release notes: checkout-service 1.4.2
+Shipped: 2026-10-20 13:58 UTC
+
+Changes:
+- Lowered PaymentAuthorizationClient timeout from 8000ms to 2500ms to fail faster.
+- Removed one retry on /authorize because duplicate charges were reported in staging.
+- Added structured logging for trace ids on checkout 5xx responses.
+
+Known risk:
+Checkout is now more sensitive to payments-service latency spikes. A p95 above 2.5s
+will surface as 500s instead of slow 200s.

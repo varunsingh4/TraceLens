@@ -1,0 +1,16 @@
+INC-1042 — checkout 500s after timeout change
+Date: 2026-06-11
+Severity: SEV-2
+
+Summary:
+After lowering the payment client timeout, checkout-service returned 500
+IllegalStateException: PaymentAuthorizationClient timed out. payments-service
+was slow because a new index build was running.
+
+Resolution:
+Rolled back the timeout change, waited for the index build, then re-shipped
+with retries restored for timeout errors only.
+
+Lesson:
+Timeout reductions without retries convert latency into customer-facing failures.
+Always pair a tighter timeout with a bounded retry and a feature flag.

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "checkout-500-after-deploy",
+    "question": "Why did checkout return 500 after the 1.4.2 deploy?",
+    "relevant_filenames": [
+      "release_notes__checkout_1.4.2.txt",
+      "past_issue__INC-1042.txt",
+      "stack_trace__checkout_prod.log",
+      "documentation__payments_timeouts.md"
+    ]
+  },
+  {
+    "id": "payment-client-timeout",
+    "question": "What is the PaymentAuthorizationClient timeout and what happens when it fires?",
+    "relevant_filenames": [
+      "documentation__payments_timeouts.md",
+      "release_notes__checkout_1.4.2.txt",
+      "stack_trace__checkout_prod.log"
+    ]
+  },
+  {
+    "id": "inventory-lease",
+    "question": "How does inventory reservation leasing work?",
+    "relevant_filenames": [
+      "documentation__unrelated_inventory.md"
+    ]
+  }
+]
